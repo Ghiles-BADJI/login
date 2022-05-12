@@ -1,0 +1,12 @@
+.card {
+    text-align: center;
+    margin: 0 auto;
+    width: fit-content;
+    top: 50%;
+    position: relative;
+    transform: translateY(-50%);
+}
+
+.fond {
+    height: 100%;
+}

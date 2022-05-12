@@ -1,0 +1,30 @@
+<form class="fond" [formGroup]="formGroup" (ngSubmit)="getValue()">
+    <mat-card class="card">
+        <mat-card-title>Se connecter</mat-card-title>
+
+        <mat-card-content>
+
+            <div>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput placeholder="pat@example.com" formControlName="email" required>
+                    <mat-error *ngIf="this.formGroup.controls['email'].hasError('required')">Vous devez entrer votre E-mail</mat-error>
+                    <mat-error *ngIf="this.formGroup.controls['email'].hasError('email')">E-mail non valid</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Mot de passe</mat-label>
+                    <input matInput type="password" formControlName="password">
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+
+        <div>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" [disabled]="formGroup.invalid">CONNEXION</button>
+                <a mat-raised-button color="primary" type="button" [routerLink]="['/signup']">S'INSCRIR</a>
+            </mat-card-actions>
+       </div>
+    </mat-card>
+</form>

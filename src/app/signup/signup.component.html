@@ -1,0 +1,36 @@
+<form class="fond" [formGroup]="formGroup" (ngSubmit)="getValue()">
+    <mat-card class="card">
+        <mat-card-title>S'inscrir</mat-card-title>
+
+        <mat-card-content>
+            
+                <div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput placeholder="pat@example.com" formControlName="email" required>
+                        <mat-error *ngIf="this.formGroup.controls['email'].hasError('required')">Vous devez entrer votre E-mail</mat-error>
+                        <mat-error *ngIf="this.formGroup.controls['email'].hasError('email')">E-mail non valid</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Mot de passe</mat-label>
+                        <input matInput type="password" formControlName="password">
+                        <mat-error *ngIf="this.formGroup.controls['password'].hasError('required')">Vous devez entrer un mot de passe</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Confirmation Mot de passe</mat-label>
+                        <input matInput type="password" formControlName="confirm_password">
+                        <mat-error *ngIf="this.formGroup.controls['confirm_password'].hasError('required')">Vous devez confirmer le mot de passe</mat-error>
+                    </mat-form-field>
+                </div>
+        </mat-card-content>
+        
+        <mat-card-actions>
+            <button mat-raised-button color="primary" [disabled]="formGroup.invalid">CONNEXION</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
+
