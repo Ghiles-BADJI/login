@@ -1,6 +1,6 @@
 <form class="fond" [formGroup]="formGroup" (ngSubmit)="getValue()">
     <mat-card class="card">
-        <mat-card-title>S'inscrir</mat-card-title>
+        <mat-card-title>S'inscrire</mat-card-title>
 
         <mat-card-content>
             
@@ -10,6 +10,7 @@
                         <input matInput placeholder="pat@example.com" formControlName="email" required>
                         <mat-error *ngIf="this.formGroup.controls['email'].hasError('required')">Vous devez entrer votre E-mail</mat-error>
                         <mat-error *ngIf="this.formGroup.controls['email'].hasError('email')">E-mail non valid</mat-error>
+                        <mat-error *ngIf="this.formGroup.controls['email'].hasError('emailExists')">Email existe déjà</mat-error>
                     </mat-form-field>
                 </div>
                 <div>
@@ -29,7 +30,7 @@
         </mat-card-content>
         
         <mat-card-actions>
-            <button mat-raised-button color="primary" [disabled]="formGroup.invalid">CONNEXION</button>
+            <button mat-raised-button color="primary" [disabled]="formGroup.invalid">INSCRIPTION</button>
         </mat-card-actions>
     </mat-card>
 </form>
