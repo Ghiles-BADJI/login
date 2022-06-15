@@ -11,6 +11,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './home/post/post.component';
+import { AddPostComponent } from './home/add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { PostComponent } from './home/post/post.component';
     SignupComponent,
     MenuComponent,
     HomeComponent,
-    PostComponent
+    PostComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { PostComponent } from './home/post/post.component';
     MatIconModule,
     MatSidenavModule,
     LayoutModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
