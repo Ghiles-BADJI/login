@@ -1,0 +1,12 @@
+:host{
+    padding: 16px 24px;
+    position: relative;
+    display: grid;
+    row-gap: 24px;
+}
+
+button {
+    position: fixed;
+    right: 24px;
+    bottom: 16px;
+}

@@ -1,1 +1,5 @@
-<p>home works!</p>
+<app-post *ngFor="let p of postList" [post]="p"></app-post>
+
+<button mat-fab color="primary" class="example-button-row">
+    <mat-icon>edit_note</mat-icon>
+</button>

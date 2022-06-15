@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl  } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, EMPTY, tap } from 'rxjs';
-import { UserHttpService } from '../user-http/user-http.service';
+
+import { LoginHttpService } from './login-http.service';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit  {
     password: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private readonly userHttpService: UserHttpService, private readonly router: Router, private _snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private readonly userHttpService: LoginHttpService, private readonly router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }

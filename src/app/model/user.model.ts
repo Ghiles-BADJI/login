@@ -1,6 +1,8 @@
-export class User {
+export type User = {
 
-    constructor (private id: number, email: string, password: string) {}
+    id: number;
 
-    
+    email: string;
+
+    password: string;
 }

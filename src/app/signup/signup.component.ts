@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../model/user.model';
-import { UserHttpService } from '../user-http/user-http.service';
 import { EmailExistsValidator } from './email-exists.validator';
 import { matchingPasswordValidator } from './matching-password.validator';
+import { SignupHttpService } from './signup-http.service';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
     confirm_password: new FormControl('', Validators.required),
   }, matchingPasswordValidator('password', 'confirm_password'));
 
-  constructor(private readonly userHttpService: UserHttpService, private readonly router: Router) { }
+  constructor(private readonly userHttpService: SignupHttpService, private readonly router: Router) { }
 
   ngOnInit(): void {
 
