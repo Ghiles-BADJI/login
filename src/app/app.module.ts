@@ -12,6 +12,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 import { AppComponent } from './app.component';
@@ -24,6 +28,9 @@ import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './home/post/post.component';
 import { AddPostComponent } from './home/add-post/add-post.component';
+import { ProfilComponent } from './profil/profil.component';
+import { DateAdapter, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +40,9 @@ import { AddPostComponent } from './home/add-post/add-post.component';
     MenuComponent,
     HomeComponent,
     PostComponent,
-    AddPostComponent
+    AddPostComponent,
+    ProfilComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,9 +59,15 @@ import { AddPostComponent } from './home/add-post/add-post.component';
     MatSidenavModule,
     LayoutModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
-  providers: [],
+  providers: [    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,19 @@
+<form [formGroup]="formGroup" (ngSubmit)="getValue()">
+    <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Photo/Video (URL)</mat-label>
+        <input matInput formControlName="imageUrl">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
 
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary"  [disabled]="formGroup.invalid">Poster</button>
+        <button mat-raised-button mat-dialog-close color="accent">Annuler</button>
+    </div>
+</form>

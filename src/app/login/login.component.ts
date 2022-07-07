@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl  } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { User } from '../model/user.model';
 
 import { LoginHttpService } from './login-http.service';
 
@@ -27,8 +28,9 @@ export class LoginComponent implements OnInit  {
     if (this.formGroup.valid) {
       const payload = this.formGroup.value;
       this.userHttpService.login(payload).subscribe(
-        (loginResponse: boolean) => { // tout se passe bien
-        if (loginResponse) {
+        (user: User) => { // tout se passe bien
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['/home']);
         }
       },

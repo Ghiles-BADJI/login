@@ -16,14 +16,24 @@ export class HomeComponent implements OnInit {
   constructor(private readonly posthttpservice : PostHttpService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.getAllPosts();
+  }
+
+  private getAllPosts() {
     this.posthttpservice.getAllPosts().subscribe((allPosts) => {
       this.postList = allPosts;
     });
   }
 
   addPost(){
-    this.dialog.open(AddPostComponent, {
+    const dialogRef = this.dialog.open(AddPostComponent, {
       width: '250px'
-    })
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.refresh === true) {
+        this.getAllPosts();
+      }
+    });
   }
 }

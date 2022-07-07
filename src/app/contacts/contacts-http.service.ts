@@ -7,11 +7,11 @@ import { User } from '../model/user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginHttpService {
+export class ContactsHttpService {
 
   constructor(private readonly http: HttpClient) { }
 
-  login(payload: { email: string; password: string}): Observable<User> {
-    return this.http.post<User>(`${environment.apiUrl}/user/login`, payload);
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.apiUrl}/user`);
   }
 }
