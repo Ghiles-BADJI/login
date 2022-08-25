@@ -30,7 +30,7 @@ export class ProfilComponent implements OnInit {
   private getUserById() {
 
     const user = JSON.parse(localStorage.getItem('user') || '{}')
-
+    console.log('userid', user)
     this.profilHttpService.getUserById(user.id).subscribe((User) => {
       console.log("user", User)
       this.userById = User;

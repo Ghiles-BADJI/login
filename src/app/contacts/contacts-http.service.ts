@@ -14,4 +14,8 @@ export class ContactsHttpService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.apiUrl}/user`);
   }
+
+  addFriendById(userId: number, friendId: number): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}/user/${userId}/friend/${friendId}`, null);
+  }
 }

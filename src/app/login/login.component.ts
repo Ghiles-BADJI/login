@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit  {
         (user: User) => { // tout se passe bien
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
+          console.log('userlogin',user)
           this.router.navigate(['/home']);
         }
       },

@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.refresh === true) {
+      if (result?.refresh === true) {
         this.getAllPosts();
       }
     });

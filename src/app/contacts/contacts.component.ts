@@ -6,44 +6,13 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
 export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
+  id: number;
+  lastName: string;
+  firstName: string;
+  email: string;
+  alreadyAdded: boolean;
 }
 
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
 
 @Component({
   selector: 'app-contacts',
@@ -52,20 +21,17 @@ const NAMES: string[] = [
 })
 export class ContactsComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['lastName', 'firstName', 'email', 'alreadyAdded'];
+  dataSource: MatTableDataSource<UserData> = new MatTableDataSource<UserData>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  usersList : User[] = [];
 
   constructor(private readonly contactshtppservice : ContactsHttpService ) {
-     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
+ 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);}
+    }
 
   ngOnInit(): void {
     this.getAllUsers()
@@ -86,27 +52,35 @@ export class ContactsComponent implements AfterViewInit, OnInit {
   
 
    private getAllUsers() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}')
+    const friends : User[] = user.friends;
+    
     this.contactshtppservice.getAllUsers().subscribe((allUsers) => {
-      this.usersList = allUsers;
+
+      const userDataList: UserData[] = allUsers.map((user) => ({
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        alreadyAdded: friends.some((friend) => friend.id === user.id),
+      }))
+
+      this.dataSource = new MatTableDataSource(userDataList);
     }
 
     )
   }
 
+  addFriend(friendId: number){
+    const user = JSON.parse(localStorage.getItem('user') || '{}')
+    const userId = user.id;
+
+      this.contactshtppservice.addFriendById(userId, friendId).subscribe((user) => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.getAllUsers()
+      })
+
+  }
+
 }
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
-}
