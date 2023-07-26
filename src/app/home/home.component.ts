@@ -20,7 +20,9 @@ export class HomeComponent implements OnInit {
   }
 
   private getAllPosts() {
-    this.posthttpservice.getAllPosts().subscribe((allPosts) => {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const userId = user.id;
+    this.posthttpservice.getAllPosts(userId).subscribe((allPosts) => {
       this.postList = allPosts;
     });
   }

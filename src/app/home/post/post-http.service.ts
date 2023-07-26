@@ -11,7 +11,7 @@ export class PostHttpService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getAllPosts(): Observable<UserPost[]> {
-    return this.http.get<UserPost[]>(`${environment.apiUrl}/post`);
+  getAllPosts(userId: number): Observable<UserPost[]> {
+    return this.http.get<UserPost[]>(`${environment.apiUrl}/post/${userId}`);
   }
 }
