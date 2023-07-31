@@ -11,8 +11,8 @@ export class ContactsHttpService {
 
   constructor(private readonly http: HttpClient) { }
 
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.apiUrl}/user`);
+  getAllUsers(userId: number): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.apiUrl}/user/excludeUserId/${userId}`);
   }
 
   addFriendById(userId: number, friendId: number): Observable<User> {

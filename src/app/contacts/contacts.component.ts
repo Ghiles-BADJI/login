@@ -49,13 +49,12 @@ export class ContactsComponent implements AfterViewInit, OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  
-
-   private getAllUsers() {
+ 
+  private getAllUsers() {
     const user = JSON.parse(localStorage.getItem('user') || '{}')
     const friends : User[] = user.friends;
     
-    this.contactshtppservice.getAllUsers().subscribe((allUsers) => {
+    this.contactshtppservice.getAllUsers(user.id).subscribe((allUsers) => {
 
       const userDataList: UserData[] = allUsers.map((user) => ({
         id: user.id,
